@@ -2,22 +2,19 @@ import ImageCard from "@/components/common/ImageCard";
 import { ImageProps } from "@/interfaces";
 import { useState } from "react";
 
+
+
 const Home: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string>("");
-  const [generatedImages, setGeneratedImages] = useState<ImageProps[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [generatedImages, setGeneratedImages] = useState<ImageProps[]>(
+    []
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
 
   const handleGenerateImage = async () => {
     console.log("Generating Images");
-    // Example dummy image for testing
-    const dummyImage = "https://placekitten.com/400/300";
-    setIsLoading(true);
-    setTimeout(() => {
-      setImageUrl(dummyImage);
-      setGeneratedImages([...generatedImages, { imageUrl: dummyImage, prompt }]);
-      setIsLoading(false);
-    }, 1000);
   };
 
   return (
@@ -40,17 +37,14 @@ const Home: React.FC = () => {
             onClick={handleGenerateImage}
             className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
           >
-            {isLoading ? "Loading..." : "Generate Image"}
+            {/* {
+              isLoading ? "Loading..." : "Generate Image"
+            } */}
+            Generate Image
           </button>
         </div>
 
-        {imageUrl && (
-          <ImageCard
-            action={(imgPath) => setImageUrl(imgPath)}
-            imageUrl={imageUrl}
-            prompt={prompt}
-          />
-        )}
+        {imageUrl && <ImageCard action={() => setImageUrl(imageUrl)} imageUrl={imageUrl} prompt={prompt} />}
       </div>
     </div>
   );
